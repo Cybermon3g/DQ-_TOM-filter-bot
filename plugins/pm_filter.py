@@ -1428,7 +1428,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 )
             else:
                 await query.message.reply_text(
-                    text=f"<b>f"{im.get('title')}"</b>",
+                    text=f"{im.get('title')}",
                     reply_markup=reply_markup,
                     disable_web_page_preview=True,
                     parse_mode=enums.ParseMode.HTML,
