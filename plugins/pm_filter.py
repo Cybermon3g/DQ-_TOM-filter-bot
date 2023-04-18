@@ -1249,7 +1249,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             )
 
     elif query.data.startswith("abc"):
-        search = query.message.text
+        content = query.message.text
         im = await get_poster(content) if IMDB else None
         await query.answer(f"{im.get('title')}", show_alert=True)
 
