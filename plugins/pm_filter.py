@@ -1259,7 +1259,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("abc"):
         content = query.message.reply_to_message or query.message
         title = query.message.chat.title
-        await query.answer(f"{title} {content}", show_alert=True)
+        await query.answer(f"{title} ", show_alert=True)
         
 
 
@@ -1683,7 +1683,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝐒𝐮𝐩𝐩𝐨𝐫𝐭 𝐆𝐫𝐨𝐮𝐩', url='https://t.me/nasrani_update')
         ], [
             InlineKeyboardButton('𝐈𝐧𝐥𝐢𝐧𝐞', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('𝐒𝐞𝐭𝐭𝐢𝐧𝐠𝐬', 'abc')
+            InlineKeyboardButton('𝐒𝐞𝐭𝐭𝐢𝐧𝐠𝐬', callback_data=f"setting")
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await client.edit_message_media(
