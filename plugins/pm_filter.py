@@ -1248,7 +1248,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 reply_to_message_id=query.message.id
             )
 
-
+    elif query.data.startswith("abc"):
+        search = query.message.text
+        im = await get_poster(content) if IMDB else None
+        await query.answer(f"{im.get('title')}", show_alert=True)
 
     elif query.data.startswith("setting"):
         userid = query.from_user.id if query.from_user else None
@@ -2986,7 +2989,7 @@ async def auto_filter(client, msg, spoll=False):
     btn.insert(0, [
         InlineKeyboardButton("ꜱᴇʟᴇᴄᴛ ᴀʟʟ", callback_data=f"send_fall#files#{offset}"),
         InlineKeyboardButton("ʙᴏᴛ ᴘᴍ", url=f"https://t.me/{temp.U_NAME}"),
-        InlineKeyboardButton("ꜱᴇʟᴇᴄᴛ", "dupe")
+        InlineKeyboardButton("ꜱᴇʟᴇᴄᴛ", "abc")
     ])
 
      
