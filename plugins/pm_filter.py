@@ -1272,10 +1272,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
                     chat = await client.get_chat(grpid)
                     title = query.message.chat.title
                 except:
-                    await query.message.reply_text("f"{im.get('title')}", quote=True)
+                    await query.message.reply_text(f"{im.get('title')}", quote=True)
                     return
             else:
-                await query.message.reply_text("f"{im.get('title')}", quote=True)
+                await query.message.reply_text(f"{im.get('title')}", quote=True)
                 return
 
         elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
