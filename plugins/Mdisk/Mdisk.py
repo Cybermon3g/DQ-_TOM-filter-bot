@@ -17,7 +17,7 @@ import re
 # CHAT_GROUP = "NasraniChatGroup"
 # Private Chat
 
-@Client.on_message(filters.command("m") & (filters.private | filters.group) & filters.reply & filters.incoming)
+@Client.on_message(filters.command("mdisk") & (filters.private | filters.group) & filters.incoming)
         
 
 
