@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram import Client, filters
 from info import *
 import openai
-openai.api_key = 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
+openai.api_key = "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"
 
 LOGIN_CHANNEL= "LOGIN_CHANNEL"
 
