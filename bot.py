@@ -21,6 +21,15 @@ import pytz
 from aiohttp import web
 from plugins import web_server
 
+from plugins.helpers.config import *
+import os
+
+class Bot(Client):
+    if not os.path.isdir(DOWNLOAD_LOCATION):
+        os.makedirs(DOWNLOAD_LOCATION)
+
+
+
 class Bot(Client):
 
     def __init__(self):
