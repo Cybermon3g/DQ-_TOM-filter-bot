@@ -49,7 +49,6 @@ async def getgithub(bot, message):
 
 **@kinzanoufal**"""
     await message.reply_photo(photo=avatar_url, caption=capy, reply_markup=BUTTONS)
-        await bot.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
-        await k.delete()
-else:
-        await message.reply_text(f"⚠️⚠️⚠️")
+    await bot.send_message(LOG_CHANNEL, A.format(message.from_user.mention, message.from_user.id)) 
+    await k.delete()
+        
