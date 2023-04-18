@@ -1255,7 +1255,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 #        query = query.strip() + " movie"
 
         content = query.message.reply_to_message or query.message
-        im = await get_poster(query=content, id=True)
+        im = await get_poster(content) if IMDB else None
         await query.message.reply_text(text=f"{im.get('title')}")
 
     elif query.data.startswith("setting"):
