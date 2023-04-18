@@ -1256,7 +1256,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
         content = query.message.reply_to_message or query.message
         im = await get_poster(query=content, id=True)
-        await query.answer(f"{im.get('title')}", show_alert=True)
+        await query.message.reply_text(text=f"{im.get('title')}")
 
     elif query.data.startswith("setting"):
         userid = query.from_user.id if query.from_user else None
