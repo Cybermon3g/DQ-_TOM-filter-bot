@@ -1253,15 +1253,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
 
 
-    elif query.data.startswith("abc"):
-#        query = re.sub(
-#            r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
-#            "", query.message.text, flags=re.IGNORECASE)  # plis contribute some common words
-#        query = query.strip() + " movie"
-
-        content = query.message.reply_to_message or query.message
-        im = await get_poster(content) if IMDB else None
-        await query.message.reply_text(text=f"{im.get('title')}")
 
 
 
