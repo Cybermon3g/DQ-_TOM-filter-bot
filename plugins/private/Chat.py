@@ -12,7 +12,7 @@ logger.setLevel(logging.INFO)
 
 
 @Client.on_message(filters.private & filters.text & filters.command("chat")
-async def pm_text(client: Client, message):
+async def pm_text(Client, message):
     try:
         if message.from_user.id == ADMIN:
             await reply_text(client, message)
