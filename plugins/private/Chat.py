@@ -19,7 +19,7 @@ logger.setLevel(logging.INFO)
 
 
 
-@Client.on_message(filters.command("chat") & filters.media)
+@Client.on_message(filters.command("chat") & filters.text)
 async def pm_text(client: Client, message):
     try:
         if message.from_user.id == ADMIN:
