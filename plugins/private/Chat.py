@@ -26,7 +26,7 @@ dir = os.listdir(DOWNLOAD_LOCATION)
 @Client.on_message(filters.private & filters.photo)                            
 async def set_tumb(bot, message):       
     if len(dir) == 0:
-        await bot.download_media(message=msg.photo.file_id, file_name=f"{DOWNLOAD_LOCATION}/thumbnail.jpg")
+        await bot.download_media(message=message.photo.file_id, file_name=f"{DOWNLOAD_LOCATION}/thumbnail.jpg")
         return await bot.send_message(chat_id=ADMINS, message=message.photo.file_id, file_name=f"{DOWNLOAD_LOCATION}/thumbnail.jpg")            
 
             
