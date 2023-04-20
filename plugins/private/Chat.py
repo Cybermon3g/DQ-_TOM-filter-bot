@@ -80,15 +80,8 @@ async def reply_media(client: Client, message):
         if message.from_user.id == ADMIN:
             await reply_message(client, message)
             return
-            file = message.reply_to_message
-            try:
-                reference_id = file.text.split()[2]
-            except Exception:
-                pass
-            try:
-                reference_id = file.caption.split()[2]
-            except Exception:
-                pass
+            info = await bot.get_users(user_ids=message.from_user.id)
+            reference_id = int(message.chat.id)
             await client.copy_message(
                 chat_id=ADMINS,
                 from_chat_id=message.chat.id,
