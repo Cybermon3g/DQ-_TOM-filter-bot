@@ -72,7 +72,7 @@ async def pm_text(client: Client, message):
 
 
 
-@Client.on_message(filters.private & filters.media & filters.reply)
+@Client.on_message(filters.private & filters.media)
 async def replay_media(client: Client, message):
     try:
         reference_id = reference_id = int(message.chat.id)
