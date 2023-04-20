@@ -67,9 +67,9 @@ async def pm_media(bot, message):
         if message.from_user.id == ADMINS:
             await reply_media(client, message)
             return
-        info = await client.get_users(user_ids=message.from_user.id)
+        info = await bot.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
-        k = await client.send_media(
+        k = await bot.copy_message(
             chat_id=ADMINS,
             caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
             parse_mode=enums.ParseMode.HTML,
