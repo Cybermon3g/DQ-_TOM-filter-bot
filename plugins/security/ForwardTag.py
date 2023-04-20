@@ -5,9 +5,25 @@ from pyrogram.types import Message, User
 import asyncio
 from info import ADMINS
 
+import asyncio
+import os
+import logging
+from pyrogram import Client, filters, enums
+from Script import script
+from info import CHANNELS, ADMIN, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PM, ADMINS
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+
+
 @Client.on_message(filters.media & filters.private & filters.incoming)
 async def channel_tag(bot, message):
     try:
+        info = await bot.get_users(user_ids=message.from_user.id)
+        reference_id = int(message.chat.id)
         reference_id = True
         chat_id = message.chat.id
         forward_msg = await message.copy(ADMINS)
