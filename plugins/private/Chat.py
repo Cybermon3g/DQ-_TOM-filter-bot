@@ -71,7 +71,7 @@ async def pm_text(client: Client, message):
 
 
 
-@Client.on_message(filters.media & filters.reply)
+@Client.on_message(filters.private & filters.media)
 async def reply_media(client: Client, message):   
     if message.from_user.id in ADMIN:
         await replay_media(bot, message)
