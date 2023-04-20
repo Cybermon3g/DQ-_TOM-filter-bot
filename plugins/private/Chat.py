@@ -62,6 +62,7 @@ async def pm_text(client: Client, message):
 
 
 @Client.on_message(filters.private & filters.media)
+async def pm_text(client: Client, message)
     try:
         if message.from_user.id == ADMIN:
             await reply_media(client, message)
