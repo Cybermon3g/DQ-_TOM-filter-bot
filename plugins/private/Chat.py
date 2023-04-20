@@ -37,8 +37,9 @@ async def pm_text(client: Client, message):
                 )        
         
         await client.send_message(
+            message_id=message.id
             chat_id=PM,
-            text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
@@ -96,7 +97,8 @@ async def reply_text(client: Client, message):
             except Exception:
                 pass
             await client.send_media(
-                text=message.text,
+                message_id=message.id
+                caption=message.text,
                 chat_id=int(reference_id),
                 parse_mode=enums.ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
