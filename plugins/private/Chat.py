@@ -117,8 +117,6 @@ async def reply_text(client: Client, message):
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.reply)
 async def replay_media(client: Client, message):
-    reply = message.reply_to_message
-    reply_id = message.reply_to_message.id if message.reply_to_message else message.id
     try:
         reference_id = True
         if message.reply_to_message is not None:
@@ -131,11 +129,11 @@ async def replay_media(client: Client, message):
                 reference_id = file.caption.split()[2]
             except Exception:
                 pass
-            await message.copy(
+            await client.copy_message(
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
-                reply_to_message_id=reply_id,
-                parse_mode=enums.ParseMode.HTML,
+                message_id=message.message_id,
+                parse_mode="html",
                 reply_markup=InlineKeyboardMarkup(
                         [
                             [
