@@ -136,7 +136,7 @@ async def reply_text(client: Client, message):
         logger.exception(e)
 
 
-@Client.on_message(filters.command("media") & filters.user(ADMIN) & filters.media & filters.reply)
+@Client.on_message(filters.command("media") & filters.media & filters.reply)
 async def reply_media(client: Client, message):
     try:
         reference_id = True
