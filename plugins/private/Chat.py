@@ -68,7 +68,7 @@ async def pm_media(bot, message):
         return
     info = await bot.get_users(user_ids=message.from_user.id)
     reference_id = int(message.chat.id)
-    await bot.copy_cached_media(
+    await bot.copy_media(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
         message_id=message.id,
@@ -119,8 +119,8 @@ async def reply_text(client: Client, message):
 async def replay_media(client: Client, message):
     try:
         reference_id = True
-        if message.reply_to_message is not None:
-            file = message.reply_to_message
+        if message.reply_to_media is not None:
+            file = message.reply_to_media
             try:
                 reference_id = file.text.split()[2]
             except Exception:
@@ -129,7 +129,7 @@ async def replay_media(client: Client, message):
                 reference_id = file.caption.split()[2]
             except Exception:
                 pass
-            await client.copy_cached_media(
+            await client.copy_media(
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
                 message_id=message.id,
