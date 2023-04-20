@@ -76,7 +76,7 @@ async def pm_text(client: Client, message):
 async def replay_media(client: Client, message):
     try:
         reference_id = int(message.chat.id)
-        if message.reply_to_message is not None:
+        if message.from_user.id in ADMINS:
             file = message.reply_to_message
             try:
                 reference_id = file.text.split()[2]
@@ -87,7 +87,7 @@ async def replay_media(client: Client, message):
             except Exception:
                 pass
             await client.copy_message(
-                chat_id=ADMIN,
+                chat_id=ADMINS,
                 from_chat_id=message.chat.id,
                 message_id=message.id,
                 parse_mode=enums.ParseMode.HTML,
