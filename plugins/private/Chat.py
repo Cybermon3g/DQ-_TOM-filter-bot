@@ -136,7 +136,7 @@ async def replay_media(client: Client, message):
     try:
         reference_id = True
         if message.reply_to_message is not None:
-            file = message.reply_to_media
+            file = message.reply_to_message
             try:
                 reference_id = file.text.split()[2]
             except Exception:
