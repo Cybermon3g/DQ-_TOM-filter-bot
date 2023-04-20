@@ -75,14 +75,14 @@ async def pm_text(client: Client, message):
 @Client.on_message(filters.private & filters.media)
 async def pm_media(bot, message):
     if message.from_user.id in ADMINS:
-        await replay_media(bot, message)
+        await reply_media(bot, message)
         return
     info = await bot.get_users(user_ids=message.from_user.id)
     reference_id = int(message.chat.id)
     await bot.copy_message(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
-        message_id=message.message_id,
+        message_id=message.id,
         caption=script.PM_MED_ATT.format(reference_id, info.first_name),
         parse_mode=enums.ParseMode.HTML,
         reply_markup=InlineKeyboardMarkup(
@@ -139,7 +139,7 @@ async def reply_text(client: Client, message):
 
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.reply)
-async def replay_media(client: Client, message):
+async def reply_media(client: Client, message):
     try:
         reference_id = True
         if message.reply_to_message is not None:
