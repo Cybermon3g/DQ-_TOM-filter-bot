@@ -63,6 +63,7 @@ async def pm_text(client: Client, message):
 
 @Client.on_message(filters.private & filters.media)
 async def pm_media(bot, message):
+    reply_id = message.reply_to_message.id if message.reply_to_message else message.id
     reply = message.reply_to_message
     reply_to_message_id=reply_id
     if message.from_user.id in ADMINS:
