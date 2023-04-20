@@ -64,13 +64,13 @@ async def pm_text(client: Client, message):
 @Client.on_message(filters.private & filters.media)
 async def pm_media(bot, message):
     try:
-        if message.from_user.id == ADMIN:
+        if message.from_user.id == ADMINS:
             await reply_media(client, message)
             return
         info = await client.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
         k = await client.send_media(
-            chat_id=ADMIN,
+            chat_id=ADMINS,
             caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
