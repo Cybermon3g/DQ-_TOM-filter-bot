@@ -11,15 +11,15 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-@Client.on_message(filters.command("chat") & filters.text)
+@Client.on_message(filters.command("chat") & filters.media)
 async def pm_text(client: Client, message):
     try:
         if message.from_user.id == ADMIN:
-            await reply_text(client, message)
+            await reply_media(client, message)
             return
         info = await client.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
-        k = await client.send_message(
+        k = await client.send_media(
             chat_id=ADMIN,
             text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
             parse_mode=enums.ParseMode.HTML,
@@ -95,7 +95,7 @@ async def reply_text(client: Client, message):
                 reference_id = file.caption.split()[2]
             except Exception:
                 pass
-            await client.send_message(
+            await client.send_media(
                 text=message.text,
                 chat_id=int(reference_id),
                 parse_mode=enums.ParseMode.HTML,
