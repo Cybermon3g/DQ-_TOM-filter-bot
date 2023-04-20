@@ -78,7 +78,7 @@ async def reply_media(client: Client, message):
         if message.from_user.id in ADMINS:
             await replay_media(client, message)
             return
-            info = await bot.get_users(user_ids=message.from_user.id)
+            info = await client.get_users(user_ids=message.from_user.id)
             reference_id = int(message.chat.id)
             await client.copy_message(
                 chat_id=ADMINS,
