@@ -83,7 +83,7 @@ async def pm_media(bot, message):
         parse_mode=enums.ParseMode.HTML
     )
     return
-    await message.reply_photo(
+    await message.reply_message(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
         message_id=message.id,
@@ -145,7 +145,7 @@ async def replay_media(client: Client, message):
                 reference_id = file.caption.split()[2]
             except Exception:
                 pass
-            await client.copy_photo(
+            await client.copy_message(
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
                 message_id=message.id,
