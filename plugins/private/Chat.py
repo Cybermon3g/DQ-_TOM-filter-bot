@@ -99,6 +99,9 @@ async def reply_media(client: Client, message):
                 )        
     
 
+    except Exception as e:
+        logger.exception(e)    
+
 
 
 
