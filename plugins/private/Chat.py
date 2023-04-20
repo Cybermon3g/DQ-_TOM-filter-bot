@@ -177,7 +177,7 @@ async def reply_media(client: Client, message):
 async def reply_media(client: Client, message):
     try:
         reference_id = True
-        if message.from_user.id in ADMINS:
+        if message.reply_to_message is not None:
             file = message.reply_to_message
             try:
                 reference_id = file.text.split()[2]
