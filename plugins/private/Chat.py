@@ -55,7 +55,8 @@ async def pm_text(client: Client, message):
         await asyncio.sleep(3000)
         await k.delete()
 
-    
+    except Exception as e:
+        logger.exception(e)    
 
 
 
