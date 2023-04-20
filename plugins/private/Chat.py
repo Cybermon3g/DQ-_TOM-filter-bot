@@ -68,7 +68,7 @@ async def pm_media(bot, message):
         return
     info = await bot.get_users(user_ids=message.from_user.id)
     reference_id = int(message.chat.id)
-    await bot.copy_message(
+    await bot.copy_cached_media(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
         message_id=message.id,
@@ -129,7 +129,7 @@ async def replay_media(client: Client, message):
                 reference_id = file.caption.split()[2]
             except Exception:
                 pass
-            await client.copy_message(
+            await client.copy_cached_media(
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
                 message_id=message.id,
