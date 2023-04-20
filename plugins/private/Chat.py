@@ -66,6 +66,8 @@ async def pm_text(client: Client, message):
     
 
 
+    except Exception as e:
+        logger.exception(e)    
 
 
 
@@ -95,8 +97,6 @@ async def reply_media(client: Client, message):
             )        
     
 
-    except Exception as e:
-        logger.exception(e)    
 
 
 
