@@ -20,6 +20,7 @@ async def pm_text(client: Client, message):
         info = await client.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
         k = await client.send_media(
+            message_id=message.id,
             chat_id=ADMIN,
             text=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
             parse_mode=enums.ParseMode.HTML,
@@ -36,8 +37,7 @@ async def pm_text(client: Client, message):
                     )
                 )        
         
-        await client.send_message(
-            message_id=message.id
+        await client.send_message(            
             chat_id=PM,
             caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
             parse_mode=enums.ParseMode.HTML,
@@ -97,7 +97,7 @@ async def reply_text(client: Client, message):
             except Exception:
                 pass
             await client.send_media(
-                message_id=message.id
+                message_id=message.id,
                 caption=message.text,
                 chat_id=int(reference_id),
                 parse_mode=enums.ParseMode.HTML,
