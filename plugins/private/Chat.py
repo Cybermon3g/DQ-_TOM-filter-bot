@@ -71,7 +71,7 @@ async def pm_media(bot, message):
     await bot.copy_message(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
-        message_id=message.reply_to_message,
+        message_id=message.message_id,
         caption=script.PM_MED_ATT.format(reference_id, info.first_name),
         parse_mode=enums.ParseMode.HTML,
     )
