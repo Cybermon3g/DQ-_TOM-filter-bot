@@ -77,7 +77,7 @@ async def pm_media(client: Client, message):
     reference_id = int(message.chat.id)
     await message.copy(
         chat_id=ADMINS,
-        from_chat_id=message.chat.id,
+        from_chat_id=reference_id,
         message_id=message.id,
         caption=script.PM_MED_ATT.format(reference_id, info.first_name),
         parse_mode=enums.ParseMode.HTML
