@@ -97,9 +97,6 @@ async def pm_media(bot, message):
                 ]
             )
         )        
-    except Exception as e:
-        logger.exception(e)
-
 
 
 
