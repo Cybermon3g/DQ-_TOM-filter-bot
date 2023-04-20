@@ -76,9 +76,7 @@ async def pm_media(bot, message):
         parse_mode=enums.ParseMode.HTML,
     )
 
-    except Exception as e:
-        logger.exception(e)
-
+    
 
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.reply)
