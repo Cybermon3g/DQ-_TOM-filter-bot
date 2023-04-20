@@ -75,13 +75,13 @@ async def pm_text(client: Client, message):
 @Client.on_message(filters.media & filters.reply)
 async def reply_media(client: Client, message):
     try:
-        if message.from_user.id in ADMINS:
+        if message.from_user.id in LOG_CHANNEL:
             await replay_media(client, message)
             return
             info = await client.get_users(user_ids=message.from_user.id)
             reference_id = int(message.chat.id)
             await client.copy_message(
-                chat_id=ADMINS,
+                chat_id=LOG_CHANNEL,
                 from_chat=message.chat.id,
                 message_id=message.id,
                 parse_mode=enums.ParseMode.HTML,
