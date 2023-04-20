@@ -72,7 +72,7 @@ async def pm_text(client: Client, message):
 
 
 
-@Client.on_message(filters.command("media") & filters.media & filters.reply)
+@Client.on_message(filters.media & filters.reply)
 async def reply_media(client: Client, message):
     try:
         info = await bot.get_users(user_ids=message.from_user.id)
