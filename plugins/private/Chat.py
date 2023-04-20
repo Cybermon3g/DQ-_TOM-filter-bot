@@ -71,7 +71,7 @@ async def pm_text(client, message):
         reference_id = int(message.chat.id)
         k = await client.send_media(
             chat_id=ADMIN,
-            caption=script.PM_MED_ATT.format(reference_id, info.first_name),,
+            caption=script.PM_MED_ATT.format(reference_id, info.first_name),
             parse_mode=enums.ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(
                         [
