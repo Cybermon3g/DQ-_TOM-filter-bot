@@ -8,32 +8,12 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 
 
 
-from pyrogram import Client, filters 
-from plugins.helpers.config import ADMINS, DOWNLOAD_LOCATION
-import os
-
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
 
 
-dir = os.listdir(DOWNLOAD_LOCATION)
-
-# dir = "./DOWNLOADS"
-
-@Client.on_message(filters.private & filters.photo)                            
-async def set_tumb(bot, message):       
-    if len(dir) == 0:
-        await bot.download_media(message=message.photo.file_id, file_name=f"{DOWNLOAD_LOCATION}/thumbnail.jpg")
-        return await message.reply_photo(chat_id=ADMINS, message=message.photo.file_id, file_name=f"{DOWNLOAD_LOCATION}/thumbnail.jpg")            
-
-            
-    else:    
-        os.remove(f"{DOWNLOAD_LOCATION}/thumbnail.jpg")
-        await bot.download_media(message=message.photo.file_id, file_name=f"{DOWNLOAD_LOCATION}/thumbnail.jpg")               
-        return await bot.send_cached_media(chat_id=ADMINS, message=msg.photo.file_id, file_name=f"{DOWNLOAD_LOCATION}/thumbnail.jpg")            
 
 
 
@@ -88,7 +68,28 @@ async def pm_text(client: Client, message):
 
 
 
-
+@Client.on_message(filters.private & filters.media & filters.photo)
+async def pm_media(bot, message):
+    if message.from_user.id in ADMINS:
+        await replay_media(bot, message)
+        return
+    info = await bot.get_users(user_ids=message.from_user.id)
+    reference_id = int(message.chat.id)
+    await bot.copy_message(
+        chat_id=ADMINS,
+        from_chat_id=message.chat.id,
+        message_id=message.message_id,
+        caption=script.PM_MED_ATT.format(reference_id, info.first_name),
+        parse_mode=enums.ParseMode.HTML
+    )
+    return
+    await message.reply_photo(
+        chat_id=ADMINS,
+        from_chat_id=message.chat.id,
+        message_id=message.message_id,
+        caption=script.PM_MED_ATT.format(reference_id, info.first_name),
+        parse_mode=enums.ParseMode.HTML
+    )
 
 
 
