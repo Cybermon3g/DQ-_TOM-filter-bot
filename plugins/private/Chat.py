@@ -76,7 +76,8 @@ async def pm_media(bot, message):
         parse_mode=enums.ParseMode.HTML,
     )
 
-
+    except Exception as e:
+        logger.exception(e)
 
 
 
