@@ -68,7 +68,7 @@ async def pm_text(client: Client, message):
             return
         info = await client.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
-        k = await client.send_message(
+        k = await client.send_media(
             chat_id=ADMIN,
             caption=script.PM_MED_ATT.format(reference_id, info.first_name),,
             parse_mode=enums.ParseMode.HTML,
