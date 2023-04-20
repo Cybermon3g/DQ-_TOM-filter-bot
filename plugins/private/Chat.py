@@ -75,7 +75,7 @@ async def pm_media(client: Client, message):
         return
     info = await client.get_users(user_ids=message.from_user.id)
     reference_id = int(message.chat.id)
-    await client.copy_message(
+    await message.copy(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
         message_id=message.id,
@@ -101,7 +101,7 @@ async def reply_text(client: Client, message):
                 reference_id = file.caption.split()[2]
             except Exception:
                 pass
-            await client.send_message(
+            await copy(
                 caption=message.text,
                 chat_id=int(reference_id),
                 parse_mode=enums.ParseMode.HTML,
