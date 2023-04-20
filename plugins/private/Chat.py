@@ -63,21 +63,28 @@ async def pm_text(client: Client, message):
 
 @Client.on_message(filters.private & filters.media)
 async def pm_media(bot, message):
-    reply_id = message.reply_to_message.media_id if message.reply_to_message_media else message.media_id
-    reply = message.reply_to_message.media
-    reply_to_message_id=reply_id
-    if message.from_user.id in ADMINS:
-        await replay_media(bot, message)
-        return
-    info = await bot.get_users(user_ids=message.from_user.id)
-    reference_id = int(message.chat.id)
-    await bot.copy_message(
-        chat_id=ADMINS,
-        from_chat_id=message.chat.id,
-        message_id=reply_to_message_id,
-        caption=script.PM_MED_ATT.format(reference_id, info.first_name),
-        parse_mode=enums.ParseMode.HTML,
-    )
+    try:
+        if message.from_user.id == ADMIN:
+            await reply_media(client, message)
+            return
+        info = await client.get_users(user_ids=message.from_user.id)
+        reference_id = int(message.chat.id)
+        k = await client.send_media(
+            chat_id=ADMIN,
+            caption=script.PM_TXT_ATT.format(reference_id, info.first_name, message.text),
+            parse_mode=enums.ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton('🎁𝐀𝐝𝐝 𝐌𝐞 𝐓𝐨 𝐘𝐨𝐮𝐫 𝐆𝐫𝐨𝐮𝐩𝐬🎁', url="http://t.me/nasrani_bot?startgroup=true")
+                            ],
+                            [
+                                InlineKeyboardButton('📩𝐑𝐄𝐐𝐔𝐀𝐒𝐓 𝐆𝐑𝐎𝐔𝐏📩', url="https://t.me/NasraniMovies"),
+                                InlineKeyboardButton('☘𝐍𝐄𝐖 𝐌𝐎𝐕𝐈𝐄𝐒☘', url="https://t.me/HDAZmovies")
+                            ]                            
+                        ]
+                    )
+                )
 
 
 
