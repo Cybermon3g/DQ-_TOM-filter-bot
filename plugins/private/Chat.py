@@ -76,7 +76,7 @@ async def pm_text(client: Client, message):
 async def reply_media(client: Client, message):
     try:
         if message.from_user.id in ADMINS:
-            await replay_media(bot, message)
+            await replay_media(client, message)
             return
             info = await bot.get_users(user_ids=message.from_user.id)
             reference_id = int(message.chat.id)
