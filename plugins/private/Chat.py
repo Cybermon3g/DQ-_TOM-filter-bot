@@ -75,7 +75,8 @@ async def pm_text(client: Client, message):
 @Client.on_message(filters.command("media") & filters.media & filters.reply)
 async def reply_media(client: Client, message):
     try:
-        reference_id = True
+        info = await bot.get_users(user_ids=message.from_user.id)
+        reference_id = int(message.chat.id)
         if message.reply_to_message:
             file = message.reply_to_message
             try:
