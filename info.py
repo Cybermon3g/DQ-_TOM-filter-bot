@@ -31,6 +31,7 @@ SP = (environ.get('SP', 'https://telegra.ph/file/db018384d5d139f3844ed.jpg https
 
 
 # Admins, Channels & Users
+ADMIN = int(environ.get('ADMINS'))
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '0').split()]
 
@@ -47,6 +48,8 @@ REQST_CHANNEL = int(reqst_channel) if reqst_channel and id_pattern.search(reqst_
 SUPPORT_CHAT_ID = int(support_chat_id) if support_chat_id and id_pattern.search(support_chat_id) else None
 login_channel = environ.get('LOGIN_CHANNEL')
 LOGIN_CHANNEL = int(login_channel) if login_channel and id_pattern.search(login_channel) else None
+pm = environ.get('PM')
+PM = int(pm) if pm and id_pattern.search(pm) else None
 
 
 # MongoDB information
