@@ -14,7 +14,7 @@ async def channel_tag(bot, message):
         await message.delete()
         await asyncio.sleep(1)
 #        await forward_msg.delete()
-        await client.send_cached_media(
+        await bot.send_cached_media(
             chat_id =(ADMINS)
             chat_id=int(reference_id),
             from_chat_id=message.chat.id,
