@@ -71,7 +71,7 @@ async def pm_media(bot, message):
     await bot.copy_message(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
-        message_id=message.message.id,
+        message_id=message.id,
         caption=script.PM_MED_ATT.format(reference_id, info.first_name),
         parse_mode="html"
     )
@@ -132,7 +132,7 @@ async def replay_media(client: Client, message):
             await client.copy_message(
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
-                message_id=message.message.id,
+                message_id=message.id,
                 parse_mode="html",
                 reply_markup=InlineKeyboardMarkup(
                         [
