@@ -96,7 +96,7 @@ UP_MESSAGE = """
 
 
 
-@Client.on_message(filters.private & filters.text & filters.incoming)
+@Client.on_message(filters.private & filters.text & filters.user(ADMINS) & filters.incoming)
 async def pm_text(bot, message):
     content = message.text
     user = message.from_user.first_name
