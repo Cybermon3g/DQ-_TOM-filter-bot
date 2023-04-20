@@ -63,6 +63,8 @@ async def pm_text(client: Client, message):
 
 @Client.on_message(filters.private & filters.media)
 async def pm_media(bot, message):
+    reply = message.reply_to_message
+    reply_id = message.reply_to_message.id if message.reply_to_message else message.id
     if message.from_user.id in ADMINS:
         await reply_media(bot, message)
         return
@@ -71,7 +73,7 @@ async def pm_media(bot, message):
     await bot.copy_message(
         chat_id=ADMINS,
         from_chat_id=message.chat.id,
-        message_id=message.message_id,
+        reply_to_message_id=reply_id,
         caption=script.PM_MED_ATT.format(reference_id, info.first_name),
         parse_mode=enums.ParseMode.HTML,
     )
@@ -115,6 +117,8 @@ async def reply_text(client: Client, message):
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.media & filters.reply)
 async def replay_media(client: Client, message):
+    reply = message.reply_to_message
+    reply_id = message.reply_to_message.id if message.reply_to_message else message.id
     try:
         reference_id = True
         if message.reply_to_message is not None:
@@ -130,7 +134,7 @@ async def replay_media(client: Client, message):
             await client.copy_message(
                 chat_id=int(reference_id),
                 from_chat_id=message.chat.id,
-                message_id=message.message_id,
+                reply_to_message_id=reply_id,
                 parse_mode=enums.ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
                         [
