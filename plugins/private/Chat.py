@@ -77,7 +77,9 @@ async def reply_media(client: Client, message):
     try:
         info = await bot.get_users(user_ids=message.from_user.id)
         reference_id = int(message.chat.id)
-        if message.reply_to_message:
+        if message.from_user.id == ADMIN:
+            await reply_message(client, message)
+            return
             file = message.reply_to_message
             try:
                 reference_id = file.text.split()[2]
