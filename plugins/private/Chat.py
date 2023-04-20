@@ -128,7 +128,7 @@ async def reply_text(client: Client, message):
             except Exception:
                 pass
             await client.send_message(
-                caption=message.text,
+                text=message.text,
                 chat_id=int(reference_id),
                 parse_mode=enums.ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
