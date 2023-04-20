@@ -59,20 +59,20 @@ async def pm_text(client: Client, message):
         logger.exception(e)
 
 
- @Client.on_message(filters.private & filters.media & filters.command("media"))
- async def pm_media(bot, message):
-     if message.from_user.id in ADMINS:
-         await replay_media(bot, message)
-         return
-     info = await bot.get_users(user_ids=message.from_user.id)
-     reference_id = int(message.chat.id)
-     await bot.copy_message(
-         chat_id=ADMINS,
-         from_chat_id=message.chat.id,
-         message_id=message.message_id,
-         caption=script.PM_MED_ATT.format(reference_id, info.first_name),
-         parse_mode=enums.ParseMode.HTML
-     )
+@Client.on_message(filters.private & filters.media & filters.command("media"))
+async def pm_media(bot, message):
+    if message.from_user.id in ADMINS:
+        await replay_media(bot, message)
+        return
+    info = await bot.get_users(user_ids=message.from_user.id)
+    reference_id = int(message.chat.id)
+    await bot.copy_message(
+        chat_id=ADMINS,
+        from_chat_id=message.chat.id,
+        message_id=message.message_id,
+       caption=script.PM_MED_ATT.format(reference_id, info.first_name),
+        parse_mode=enums.ParseMode.HTML
+    )
 
 
 @Client.on_message(filters.private & filters.user(ADMIN) & filters.text & filters.reply)
