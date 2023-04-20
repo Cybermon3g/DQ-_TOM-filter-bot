@@ -5,7 +5,7 @@ from pyrogram.types import Message, User
 import asyncio
 from info import ADMINS
 
-@Client.on_message(filters.forwarded & filters.media & filters.private & filters.incoming)
+@Client.on_message(filters.media & filters.private & filters.incoming)
 async def channel_tag(bot, message):
     try:
         chat_id = message.chat.id
